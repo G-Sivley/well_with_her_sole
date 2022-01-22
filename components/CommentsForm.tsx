@@ -1,4 +1,3 @@
-// @ts-ignore
 import React, { useRef, useState, useEffect } from "react";
 
 import { submitComment } from "../services";
