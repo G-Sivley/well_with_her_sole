@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 
 import { getComments } from "../services";
 
-const Comments = ({ slug }) => {
+const Comments = ({ slug }: { slug: any }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -30,8 +30,8 @@ const Comments = ({ slug }) => {
                 {` `}
                 {moment(comment.createdAt).format("MMM DD, YYYY HH:MM")}
               </p>
-              <p className="whitespace-pree-line text-gray-600 w-full">{parse(comment.comment)}
-
+              <p className="whitespace-pree-line text-gray-600 w-full">
+                {parse(comment.comment)}
               </p>
             </div>
           ))}
