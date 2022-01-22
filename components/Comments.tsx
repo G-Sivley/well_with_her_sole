@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import { getComments } from "../services";
 
 const Comments = ({ slug }: { slug: any }) => {
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<any[]>([]);
 
   useEffect(() => {
     getComments(slug).then((result) => setComments(result));
