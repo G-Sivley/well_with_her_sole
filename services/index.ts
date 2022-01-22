@@ -98,8 +98,13 @@ export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
     query GetPostDetails($slug: String!, $categories: [String!]) {
       posts(
-        where: {slug_not: $slug, AND: {categories_some: {slug_in: $categories}}}
+        where: {
+          slug_not: $slug
+          AND: { categories_some: { slug_in: $categories } }
+        }
+        orderBy: createdAt_ASC
         last: 3
+        
       ) {
         title
         featuredImage {
@@ -143,7 +148,10 @@ export const submitComment = async (obj: any) => {
 export const getComments = async (slug) => {
   const query = gql`
     query GetComments($slug: String!) {
-      comments(where: { post: { slug: $slug } }) {
+      comments(
+        where: { post: { slug: $slug } }
+        orderBy: createdAt_DESC
+        ) {
         name
         createdAt
         comment
@@ -154,7 +162,6 @@ export const getComments = async (slug) => {
 
   return result.comments;
 };
-
 
 export const getFeaturedPosts = async () => {
   const query = gql`
@@ -184,7 +191,7 @@ export const getFeaturedPosts = async () => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      postsConnection(where: {categories_some: {slug: $slug}}) {
+      postsConnection(where: { categories_some: { slug: $slug } }) {
         edges {
           cursor
           node {
