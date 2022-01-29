@@ -14,7 +14,7 @@ export default function Home({ posts }: { posts: any }) {
       <FeaturedPosts />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <div className="lg:col-span-8 col-span-1">
-          {posts.reverse().map((post: any) => (
+          {posts.map((post: any) => (
             <PostCard post={post.node} key={post.title} />
           ))}
         </div>
